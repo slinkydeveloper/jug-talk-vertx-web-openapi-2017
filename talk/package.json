@@ -1,0 +1,12 @@
+{
+  "name": "talk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "reveal-md source.md --theme solarized --css custom.css",
+    "start-dev": "reveal-md source.md --theme solarized --css custom.css -w"
+  },
+  "author": "",
+  "license": "ISC"
+}
