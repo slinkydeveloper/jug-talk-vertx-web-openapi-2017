@@ -456,7 +456,7 @@ responses:
 
 ---
 
-## `vertx-web-api-contract`
+## vertx-web-api-contract
 
 * <p class="fragment">OpenAPI 3 compliant API specification validation with automatic loading of external Json schemas</p>
 * <p class="fragment">Automatic request validation</p>
@@ -464,7 +464,7 @@ responses:
 
 ---
 
-### `OpenAPI3RouterFactory`
+### OpenAPI3RouterFactory
 
 * Async loading of specification and its schema dependencies
 * Mount path with operationId or with combination of path and HTTP method
