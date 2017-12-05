@@ -299,6 +299,10 @@ Aggiungo BodyHandler che si occupa di parsare il body. A seconda del Content-Typ
 
 ---
 
+## Demo Time
+
+---
+
 ![](img/OpenAPI.png)
 
 Open standard for Web APIs
@@ -438,10 +442,6 @@ responses:
   400:
     description: Wrong Ping!
 </code></pre>
-
----
-
-## Demo time
 
 ---
 

@@ -447,20 +447,15 @@ responses:
 
 ## vertx-web-api-contract
 
-* <p class="fragment">OpenAPI 3 compliant API specification validation with automatic loading of external Json schemas</p>
-* <p class="fragment">Automatic request validation</p>
-* <p class="fragment">Router factory</p>
+Note:
+vertx-web-api-contract vi da una serie di strumenti per utilizzare la vostra specifica openapi.
 
 ---
 
-### OpenAPI3RouterFactory
+## OpenAPI3RouterFactory
 
-* Async loading of specification and its schema dependencies
-* Mount path with operationId or with combination of path and HTTP method
-* Automatic request parameters validation
-* Automatic convert OpenAPI style paths to Vert.x style paths
-* Lazy methods: operations (combination of paths and HTTP methods) are mounted in declaration order inside specification
-* Automatic mount of security validation handlers
+Note:
+OpenAPI3RouterFactory genera dinamicamente un router, definendo correttamente le path, gli handler che si occupano di validare la richiesta;
 
 ---
 
@@ -519,18 +514,6 @@ routerFactory.addFailureHandlerByOperationId(
 
 Note:
 Spiegare la ValidationException
-
----
-
-### Add security handler
-
-<pre class="remaining-height"><code class="lang-java hljs" data-trim>
-routerFactory
-  .addSecurityHandler(
-    "jwt_auth",
-    JWTAuthHandler.create(jwtAuthProvider)
-  );
-</code></pre>
 
 ---
 
