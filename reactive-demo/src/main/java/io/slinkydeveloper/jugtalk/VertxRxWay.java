@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
-public class VertxWay extends AbstractVerticle {
+public class VertxRxWay extends AbstractVerticle {
 
     @Override
     public void start() throws IOException {
@@ -28,6 +28,6 @@ public class VertxWay extends AbstractVerticle {
     }
 
     public static void main(String[] args) {
-        Vertx.vertx().deployVerticle(new VertxWay());
+        Vertx.vertx().deployVerticle(new VertxRxWay());
     }
 }

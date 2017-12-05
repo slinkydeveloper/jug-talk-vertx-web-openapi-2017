@@ -5,14 +5,14 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>jug-talk-vertx-web-openapi-2017</groupId>
-  <artifactId>jug-talk-vertx-web-openapi-2017</artifactId>
+  <groupId>web-demo</groupId>
+  <artifactId>web-demo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>jug-talk-vertx-web-openapi-2017</name>
+  <name>web-demo</name>
 
   <properties>
-    <main.verticle>io.slinkydeveloper.jugtalk.VertxRxWay</main.verticle>
+    <main.verticle>io.slinkydeveloper.MainVerticle</main.verticle>
   </properties>
 
   <dependencies>
@@ -27,14 +27,14 @@
       <version>3.5.0</version>
     </dependency>
     <dependency>
-        <groupId>io.vertx</groupId>
-        <artifactId>vertx-rx-java2</artifactId>
-        <version>3.5.0</version>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-rx-java2</artifactId>
+      <version>3.5.0</version>
     </dependency>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.6</version>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web</artifactId>
+      <version>3.5.0</version>
     </dependency>
   </dependencies>
 
@@ -47,6 +47,18 @@
         </includes>
       </resource>
     </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
     <plugins>
       <plugin>

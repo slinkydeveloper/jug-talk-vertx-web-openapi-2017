@@ -1,2 +1,8 @@
 talk/_site
 reactive-demo/target
+
+web-demo/target/
+
+reactive-demo/\.idea/
+
+web-demo/\.idea/
