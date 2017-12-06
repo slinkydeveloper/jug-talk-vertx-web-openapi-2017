@@ -3,8 +3,6 @@ reactive-demo/target
 
 web-demo/target/
 
-reactive-demo/\.idea/
-
-web-demo/\.idea/
-
 talk_simple/_site/
+
+openapi-demo/target
