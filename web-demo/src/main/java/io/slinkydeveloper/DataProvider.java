@@ -33,7 +33,7 @@ public class DataProvider extends AbstractVerticle {
                     .flatMap(url -> client.getAbs(url).rxSend().toObservable())
                     .map(HttpResponse::bodyAsString)
                     .map(String::length)
-                    .reduce(0, (sum, string) -> sum + string)
+                    .reduce(0, Integer::sum)
                     .subscribe(result ->
                         message.reply(new JsonObject().put("result", result).put("time", (System.currentTimeMillis() - startTime)))
                     );

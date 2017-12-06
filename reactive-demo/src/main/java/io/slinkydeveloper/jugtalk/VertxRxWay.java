@@ -23,7 +23,7 @@ public class VertxRxWay extends AbstractVerticle {
                 .flatMap(url -> client.getAbs(url.toString()).rxSend().toObservable())
                 .map(HttpResponse::bodyAsString)
                 .map(String::length)
-                .reduce(0, (sum, string) -> sum + string)
+                .reduce(0, Integer::sum)
                 .subscribe(result -> System.out.println("All loaded pages contains a number of character equals to " + result + ". Completed at " + System.currentTimeMillis()));
     }
 

@@ -38,6 +38,7 @@ public class MainVerticle extends AbstractVerticle {
 
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
-        vertx.deployVerticle(new DataProvider(), ar -> vertx.deployVerticle(new MainVerticle()));
+        vertx.deployVerticle(new DataProvider());
+        vertx.deployVerticle(new MainVerticle());
     }
 }

@@ -1,6 +1,5 @@
 package io.slinkydeveloper.jugtalk;
 
-import io.reactivex.Observable;
 import io.vertx.core.*;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.ext.web.client.HttpResponse;
@@ -36,7 +35,7 @@ public class VertxAsyncWay extends AbstractVerticle {
                             .map(obj -> (HttpResponse<Buffer>) obj)
                             .map(HttpResponse::bodyAsString)
                             .map(String::length)
-                            .reduce(0, (sum, string) -> sum + string);
+                            .reduce(0, Integer::sum);
                     System.out.println("All loaded pages contains a number of character equals to " + result + ". Completed at " + System.currentTimeMillis());
                 });
 
