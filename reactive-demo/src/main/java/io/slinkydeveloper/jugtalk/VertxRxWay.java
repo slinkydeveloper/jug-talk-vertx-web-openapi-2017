@@ -25,6 +25,7 @@ public class VertxRxWay extends AbstractVerticle {
                 .map(String::length)
                 .reduce(0, Integer::sum)
                 .subscribe(result -> System.out.println("All loaded pages contains a number of character equals to " + result + ". Completed at " + System.currentTimeMillis()));
+        System.out.println("Hello!");
     }
 
     public static void main(String[] args) {
