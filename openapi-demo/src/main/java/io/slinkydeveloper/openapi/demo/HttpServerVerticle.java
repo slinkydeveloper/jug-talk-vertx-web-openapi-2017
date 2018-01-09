@@ -17,7 +17,7 @@ public class HttpServerVerticle extends AbstractVerticle {
 
   @Override
   public void start(Future future) {
-    OpenAPI3RouterFactory.createRouterFactoryFromFile(this.vertx, getClass().getResource("/spec.json").getFile(), openAPI3RouterFactoryAsyncResult -> {
+    OpenAPI3RouterFactory.createRouterFactoryFromFile(this.vertx, getClass().getResource("/spec.yaml").getFile(), openAPI3RouterFactoryAsyncResult -> {
       if (openAPI3RouterFactoryAsyncResult.succeeded()) {
         OpenAPI3RouterFactory routerFactory = openAPI3RouterFactoryAsyncResult.result();
 
@@ -46,7 +46,12 @@ public class HttpServerVerticle extends AbstractVerticle {
         // Generate the router
         Router router = routerFactory.getRouter();
         server = vertx.createHttpServer(new HttpServerOptions().setPort(3000).setHost("localhost"));
-        server.requestHandler(router::accept).listen();
+        server.requestHandler(router::accept).listen(httpServerAsyncResult -> {
+            if (httpServerAsyncResult.succeeded())
+                System.out.println("Listening on port " + httpServerAsyncResult.result().actualPort());
+            else
+                System.out.println(httpServerAsyncResult.cause());
+        });
         future.complete();
       } else {
           // Something went wrong during router factory initialization

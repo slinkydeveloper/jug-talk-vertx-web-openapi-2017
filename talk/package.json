@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "reveal-md source.md --theme solarized --css custom.css",
-    "start-dev": "reveal-md source.md --theme solarized --css custom.css -w",
-    "build": "reveal-md source.md --theme solarized --css custom.css --static _site"
+    "start": "reveal-md source.md --theme beige --css custom.css",
+    "start-dev": "reveal-md source.md --theme beige --css custom.css -w",
+    "build": "reveal-md source.md --theme beige --css custom.css --static _site"
   },
   "author": "Francesco Guardiani",
   "license": "ISC"

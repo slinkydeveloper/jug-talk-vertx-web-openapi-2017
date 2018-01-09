@@ -35,9 +35,9 @@ Eclipse Vert.x è un progetto della Eclipse Foundation. Propone queste killer fe
 ## Reactive Programming
 
 Note:
-Moderno metodo di programmazione che mischia vecchi concetti di programmazione.
-Reactive programming is programming with asynchronous data streams.
-Esempio click del mouse -> Reactive is that idea on steroids! -> Tutto viene trattato come uno stream
+Programmazione Reactive significa programmare con stream asincroni. Però possiamo, potenzialmente, trattare tutto come uno stream di dati.
+
+Observer Design Pattern
 
 ---
 
@@ -64,16 +64,37 @@ reactivemanifesto.org
 
 ---
 
-## Why Reactive?
-
-<p class="fragment">To solve C10K problem!</p>
+## C10K Problem
 
 Note:
 Il problema C10K consiste nell'avere 10.000 connessioni contemporaneamente sullo stesso web server. Anche se interfaccia li gestisce sposto comunque il collo di bottiglia in un altro punto (esempio accesso a DB).
 
-Multithreading non si presta a risolvere questo problema
+---
 
-Con Vert.x il problema C10K siamo in grado di risolverlo con le risorse di un Raspberry
+## C10K with Multi-Threading
+
+<img src="img/cpucook.gif" style="width:140%;"></img>
+
+---
+
+## C10K with NodeJS
+
+<img src="img/node.gif" style="width:200%;"></img>
+
+---
+
+## C10K with Vert.x
+
+<img src="img/power.gif" style="width:120%;"></img>
+
+---
+
+## Why Reactive?
+
+<p class="fragment">To improve user experience!</p>
+
+Note:
+Migliorare l'esperienza utente -> Aumentare il throughput e la velocità del backend.
 
 ---
 
@@ -83,19 +104,9 @@ Con Vert.x il problema C10K siamo in grado di risolverlo con le risorse di un Ra
 * <p class="fragment">Web - Web Client - API Contracts</p>
 * <p class="fragment">MongoDB - JDBC - SQL - Redis - Mysql - PostgreSQL</p>
 * <p class="fragment">RxJava support - Kotlin Coroutines</p>
-* <p class="fragment">IOT with MQTT</p>
 * <p class="fragment">JWT - OAuth 2 - Shiro</p>
 * <p class="fragment">SMTP - Kafka - RabbitMQ - AMQP</p>
 * <p class="fragment">`vertx-awesome` for the community libs</p>
-
-Note:
-Prima cosa che mi ha detto Paulo e il motivo principale per cui ci lavoro
-
----
-
-## All in one Toolkit
-
-![](img/happy_minions.gif)
 
 ---
 
@@ -126,10 +137,6 @@ L'handler viene eseguito sull'event loop!
 
 ---
 
-![](img/sync-workers.gif)
-
----
-
 ## Never stop the event loop!
 
 ![](img/reactor-pattern-blocking.png)
@@ -139,7 +146,7 @@ La regola fondamentale è: mai bloccare l'event loop, cioè non eseguire mai cod
 
 ---
 
-![](img/nostop.gif)
+<img src="img/nostop.gif" style="width:200%;"></img>
 
 ---
 
@@ -158,6 +165,10 @@ Gli eventi come la richiesta a un DB vengono eseguiti:
 
 Note:
 Anche se può sembrare contro intuitivo, la gestione di moltissimi eventi è efficiente con il pattern reactor.
+
+---
+
+<img src="img/sync-workers.gif" style="width:30%;"></img>
 
 ---
 
@@ -195,7 +206,7 @@ Vert.x per rinforzare l'idea di Message-driven predisponde un event bus, cioè u
 
 #### Scaling and Connectivity
 
-![](img/event-bus-bridge.png)
+<img src="img/event-bus-bridge.png" style="max-width:80%;"></img>
 
 Note:
 L'event bus ha dei client non solo per Vert.x stesso, ma per qualsiasi linguaggio/framework, di conseguenza posso collegare la mia applicazione Vert.x a un'applicazione Node, C++, Python, ecc...
@@ -553,7 +564,7 @@ HttpServer server = vertx.createHttpServer();
 server.requestHandler(router::accept).listen();
 </code></pre>
 
-<p class="fragment">![](img/spongebob.gif)</p>
+![](img/spongebob.gif)
 
 Note:
 getRouter() costruisce il router
