@@ -4,97 +4,148 @@
 
 ## About Me
 
-Francesco Guardiani
+Vert.x Mantainer - Credimi IT Engineer Intern - IT Engineering Student at Politecnico di Milano
 
-Vert.x Mantainer & IT Engineering Student at Politecnico di Milano
+* <img src="img/twitter.svg" style="vertical-align: middle; border:none;"> @slinkyguardiani</img>
+* <img src="img/github.svg" style="vertical-align: middle; border:none;"> @slinkydeveloper</img>
+* <img src="img/web.svg" style="vertical-align: middle; border:none;"> slinkydeveloper.github.io</img>
 
-Java Developer and Javascript Fan
+<img src="img/credimi.png" style="width:60%;"></img>
 
-* <img src="img/twitter.svg" style="vertical-align: middle; border:none;"> @slinkyguardiani</div>
-* <img src="img/github.svg" style="vertical-align: middle; border:none;"> @slinkydeveloper</div>
-* <img src="img/web.svg" style="vertical-align: middle; border:none;"> slinkydeveloper.github.io</div>
+---
+
+![](img/OpenAPI.png)
+
+Open standard for Web APIs
+
+---
+
+## Contract First Approach
+
+![](img/APIDesignDriven.png)
+
+<p class="fragment">You write code during design phase...</p>
+
+---
+
+#### ... And you use it during every API lifecycle phase!
+
+![](img/OpenAPIDrivenDevelopment.png)
+
+---
+
+### OpenAPI: joint venture of Swagger, RAML, API Blueprint and other old standards
+
+![](img/swagger-war.png)
+
+Note:
+Documentazione delle API:
+OData Microsoft 2007 In Corso - WADL 2009 Sun - API Blueprint 2013 - Swagger 2010 - Raml 2013 Mulesoft e partner Adobe, Cisco, Google, PayPal - Tutti joinano in OpenAPI Initiative
+
+---
+
+## OpenAPI spec
+
+<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
+openapi: "3.0.0"
+info:
+  title: "Super Awesome API!"
+  version: "1.0.0"
+paths:
+  /hello_world: ...
+  /users: ...
+  /products: ...
+components:
+  schemas:
+    User: /* Json schema of user */
+</code></pre>
+
+---
+
+## Path definition
+
+<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
+/ping: /* Path name */
+  post: /* HTTP Method */
+    operationId: ping /* Unique operation id */
+    summary: Calculate the pong from the ping provided
+    parameters: ... /* Request parameters */
+    requestBody: ... /* Request body description */
+    responses: ... /* Responses */
+</code></pre>
+
+---
+
+## Parameters definition
+
+<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
+parameters:
+  - name: latitude
+    in: query
+    description: Latitude component of location.
+    required: true
+    schema:
+      type: number
+      format: double
+  - name: longitude
+    in: query
+    description: Longitude component of location.
+    required: true
+    schema:
+      type: number
+      format: double
+</code></pre>
+
+---
+
+## Request body definition
+
+<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
+requestBody:
+  required: true
+  content:
+    "application/json":
+      schema: /* We reefer to schema inside components */
+        $ref: '#/components/schemas/Ping'
+    "application/x-www-form-urlencoded":
+      schema:
+        $ref: '#/components/schemas/Ping'
+</code></pre>
+
+Note:
+La cosa interessante è che possiamo definire in OpenAPI anche differenti metodi di serializzazione del request body
+
+---
+
+## Responses definition
+
+<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
+responses:
+  200: /* HTTP Status code 200 */
+    description: All Good, returning Pong
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Pong'
+  400:
+    description: Wrong Ping!
+</code></pre>
 
 ---
 
 ![](img/vertx.png)
 
-* <p class="fragment grow">General Purpose</p>
-* <p class="fragment grow">Polyglot</p>
-* <p class="fragment grow">Fluent APIs</p>
-* <p class="fragment grow">Reactive</p>
-* <p class="fragment grow">All in one toolkit</p>
+* Aynchronous non blocking
+* Lightweight
+* Event driven
+* Polyglot
+* General purpose
+* All in one toolkit
 
 Note:
-Eclipse Vert.x è un progetto della Eclipse Foundation. Propone queste killer feature:
+Eclipse Vert.x è un progetto della Eclipse Foundation
 - network utility, applicazione web moderna, microservice, processing di eventi, monolita con event bus
-- java, javascript, groovy, ruby, ceylon, scala e il kotlin
-- ne parliamo tra poco
-
----
-
-## Reactive Programming
-
-Note:
-Programmazione Reactive significa programmare con stream asincroni. Però possiamo, potenzialmente, trattare tutto come uno stream di dati.
-
-Observer Design Pattern
-
----
-
-## Reactive Programming
-
-![](img/reactive.svg)
-
-Note:
-**Responsive** Il sistema risponde nel tempo minore possibile. è necessario per l'usabilità e incoraggiare l'interazione con l'utente maggiormente. Esempio whatsapp telegram.
-
-**Elastic** significa che il sistema rimane responsivo sotto workload molto vari. Esempio sistema di scommesse online. Nessun bottleneck e allocamento di risorse dinamico
-
-**Resilient** significa che il sistema rimane responsivo in caso di failure di qualsiasi tipo. le failure vengono contenute e gestite senza compromettere l'intero sistema
-
-Le fondamenta sono i **messaggi** per permettere il loose coupling. I messaggi sono non-blocking async e consumano le risorse solo quando necessario. Message driven è diverso da event driven perchè
-* il messaggio può avere vari formati: broadcast, p2p, group of subscribers
-* l'handler non è attaccato all'oggetto che emette l'evento
-
----
-
-## Reactive Programming
-
-reactivemanifesto.org
-
----
-
-## C10K Problem
-
-Note:
-Il problema C10K consiste nell'avere 10.000 connessioni contemporaneamente sullo stesso web server. Anche se interfaccia li gestisce sposto comunque il collo di bottiglia in un altro punto (esempio accesso a DB).
-
----
-
-## C10K with Multi-Threading
-
-<img src="img/cpucook.gif" style="width:140%;"></img>
-
----
-
-## C10K with NodeJS
-
-<img src="img/node.gif" style="width:200%;"></img>
-
----
-
-## C10K with Vert.x
-
-<img src="img/power.gif" style="width:120%;"></img>
-
----
-
-## Why Reactive?
-
-<p class="fragment">To improve user experience!</p>
-
-Note:
-Migliorare l'esperienza utente -> Aumentare il throughput e la velocità del backend.
+- java, javascript, groovy, ruby, ceylon, scala e kotlin
 
 ---
 
@@ -102,11 +153,10 @@ Migliorare l'esperienza utente -> Aumentare il throughput e la velocità del bac
 
 * <p class="fragment">Event Bus - JSON - FS - Logging - HTTP - TCP - UDP</p>
 * <p class="fragment">Web - Web Client - API Contracts</p>
-* <p class="fragment">MongoDB - JDBC - SQL - Redis - Mysql - PostgreSQL</p>
-* <p class="fragment">RxJava support - Kotlin Coroutines</p>
+* <p class="fragment">MongoDB - JDBC - SQL - Redis - Reactive PostgreSQL</p>
 * <p class="fragment">JWT - OAuth 2 - Shiro</p>
 * <p class="fragment">SMTP - Kafka - RabbitMQ - AMQP</p>
-* <p class="fragment">`vertx-awesome` for the community libs</p>
+* <p class="fragment">`reactiverse` & `vertx-awesome`</p>
 
 ---
 
@@ -121,6 +171,28 @@ Vert.x ha un runtime che viene eseguito sulla JVM per permettere la programmazio
 
 Note:
 Questo runtime è chiamato Reactor
+
+---
+
+The most important requirement of your public/private Web API is the **high throughput**
+
+---
+
+## C10K Problem
+
+Note:
+Il problema C10K (Dan Kegel 1999) consiste nell'avere 10.000 connessioni contemporaneamente sullo stesso web server. Anche se interfaccia li gestisce sposto comunque il collo di bottiglia in un altro punto (esempio accesso a DB).
+
+---
+
+## Handlers (or callbacks)
+
+```java
+(messageContext) -> {
+  // Do some stuff with message payload
+  // Reply with methods included inside context
+}
+```
 
 ---
 
@@ -179,6 +251,24 @@ La maggiore differenza tra NodeJS e Vert.x è il pattern multi reactor, cioè ab
 
 ---
 
+## C10K with Multi-Threading
+
+<img src="img/cpucook.gif" style="width:140%;"></img>
+
+---
+
+## C10K with NodeJS
+
+<img src="img/node.gif" style="width:200%;"></img>
+
+---
+
+## C10K with Vert.x
+
+<img src="img/matrix.gif" style="width:120%;"></img>
+
+---
+
 ## Event Bus
 
 Note:
@@ -210,10 +300,6 @@ Vert.x per rinforzare l'idea di Message-driven predisponde un event bus, cioè u
 
 Note:
 L'event bus ha dei client non solo per Vert.x stesso, ma per qualsiasi linguaggio/framework, di conseguenza posso collegare la mia applicazione Vert.x a un'applicazione Node, C++, Python, ecc...
-
----
-
-## Demo time!
 
 ---
 
@@ -310,160 +396,7 @@ Aggiungo BodyHandler che si occupa di parsare il body. A seconda del Content-Typ
 
 ---
 
-## Demo Time
-
----
-
-![](img/OpenAPI.png)
-
-Open standard for Web APIs
-
----
-
-## Two major necessities
-
-* Formally document APIs
-* Automate entire APIs Development Lifecycle
-
-Note:
-- Prima di OpenAPI (e dei suoi competitor) la documentazione delle API non era standardizzata ed era poco formale
-- Vogliamo automatizzare più possibile il ciclo di sviluppo, prima durante dopo
-
----
-
-### OpenAPI: joint venture of Swagger, RAML, API Blueprint and other old standards
-
-![](img/swagger-war.png)
-
-Note:
-Documentazione delle API REST:
-OData Microsoft 2007 In Corso - WADL 2009 Sun - API Blueprint 2013 - Swagger 2010 - Raml 2013 Mulesoft e partner Adobe, Cisco, Google, PayPal - Tutti joinano in OpenAPI Initiative
-
----
-
-## What can you automate?
-
-<p class="fragment">Everything!</p>
-
----
-
-* Code scaffolding to startup your project
-* Client generation
-* Test generation
-* Request/Response validation
-* Documentation generator
-* Config generation for API gateways, monitoring tools, ...
-
----
-
-## Adopting OpenAPI
-
-* OpenAPI as center of API Driven Development
-* OpenAPI as documentation for your existing APIs
-
-Note:
-- API Driven Development significa che, all'inizio del processo di sviluppo, sviluppiamo la documentazione della nostra API. Questo permette ai **team frontend/backend** di lavorare sin da subito **parallelamente** e modelliamo il nostro sistema in base alle necessità dell'interfaccia stessa. Inoltre, grazie ad alcuni tool, permette di generare da subito le interfacce e **concentrarsi sulla Business Logic**
-- Documentare formalmente con OpenAPI significa generare automaticamente client, documentazione più figa e semplificare il monitoring
-
----
-
-## OpenAPI spec
-
-<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
-openapi: "3.0.0"
-info:
-  title: "Super Awesome API!"
-  version: "1.0.0"
-paths:
-  /hello_world: ...
-  /users: ...
-  /products: ...
-components:
-  schemas:
-    User: /* Json schema of user */
-</code></pre>
-
----
-
-## Path definition
-
-<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
-/ping: /* Path name */
-  post: /* HTTP Method */
-    operationId: ping /* Unique operation id */
-    summary: Calculate the pong from the ping provided
-    parameters: ... /* Request parameters */
-    requestBody: ... /* Request body description */
-    responses: ... /* Responses */
-</code></pre>
-
----
-
-## Parameters definition
-
-<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
-parameters:
-  - name: latitude
-    in: query
-    description: Latitude component of location.
-    required: true
-    schema:
-      type: number
-      format: double
-  - name: longitude
-    in: query
-    description: Longitude component of location.
-    required: true
-    schema:
-      type: number
-      format: double
-</code></pre>
-
----
-
-## Request body definition
-
-<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
-requestBody:
-  required: true
-  content:
-    "application/json":
-      schema: /* We reefer to schema inside components */
-        $ref: '#/components/schemas/Ping'
-    "application/x-www-form-urlencoded":
-      schema:
-        $ref: '#/components/schemas/Ping'
-</code></pre>
-
-Note:
-La cosa interessante è che possiamo definire in OpenAPI anche differenti metodi di serializzazione del request body
-
----
-
-## Responses definition
-
-<pre class="remaining-height"><code class="lang-yaml hljs" data-trim>
-responses:
-  200: /* HTTP Status code 200 */
-    description: All Good, returning Pong
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/Pong'
-  400:
-    description: Wrong Ping!
-</code></pre>
-
----
-
 ## Vert.x ❤ OpenAPI
-
----
-
-### Two tools
-
-* `vertx-web-api-contract`
-* `slush-vertx` (Unofficial)
 
 ---
 
@@ -489,10 +422,8 @@ responses:
 ### Initialize the Router Factory
 
 <pre class="remaining-height"><code class="lang-java hljs" data-trim>
-OpenAPI3RouterFactory.createRouterFactoryFromFile(
-  vertx,
-  "src/main/resources/petstore.yaml",
-  ar -> {
+OpenAPI3RouterFactory.create(
+  vertx, "petstore.yaml", ar -> {
     if (ar.succeeded()) {
       // Spec loaded with success
       OpenAPI3RouterFactory routerFactory = ar.result();
@@ -568,15 +499,6 @@ server.requestHandler(router::accept).listen();
 
 Note:
 getRouter() costruisce il router
-
----
-
-## `slush-vertx`
-
-Command line tool to generate code in different languages:
-
-* OpenAPI web server
-* OpenAPI web client (with `vertx-web-client`)
 
 ---
 
