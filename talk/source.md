@@ -20,7 +20,7 @@ Open standard for Web APIs
 
 ---
 
-## Contract First Approach
+### Design Driven Develpment with OpenAPI
 
 ![](img/APIDesignDriven.png)
 
@@ -69,6 +69,8 @@ components:
   post: /* HTTP Method */
     operationId: ping /* Unique operation id */
     summary: Calculate the pong from the ping provided
+    security:
+    	- my_jwt_api_key: []
     parameters: ... /* Request parameters */
     requestBody: ... /* Request body description */
     responses: ... /* Responses */
@@ -168,6 +170,17 @@ Eclipse Vert.x è un progetto della Eclipse Foundation
 
 ---
 
+## Handlers (or callbacks)
+
+```java
+(messageContext) -> {
+  // Do some stuff with message payload
+  // Reply with methods included inside context
+}
+```
+
+---
+
 ## All in one Toolkit
 
 * Event Bus - JSON - FS - Logging - HTTP - TCP - UDP
@@ -184,17 +197,6 @@ Eclipse Vert.x è un progetto della Eclipse Foundation
 ---
 
 ### The (Multi) Reactor Pattern
-
----
-
-## Handlers (or callbacks)
-
-```java
-(messageContext) -> {
-  // Do some stuff with message payload
-  // Reply with methods included inside context
-}
-```
 
 ---
 
@@ -271,7 +273,24 @@ La maggiore differenza tra NodeJS e Vert.x è il pattern multi reactor, cioè ab
 
 ---
 
+## Verticle
+
+```java
+public class BasicVerticle extends AbstractVerticle {
+
+    @Override
+    public void start() throws Exception {}
+
+    @Override
+    public void stop() throws Exception {}
+}
+```
+
+---
+
 ## Event Bus
+
+![](img/event-bus.png)
 
 Note:
 Vert.x per rinforzare l'idea di Message-driven predisponde un event bus, cioè un sistema di messagistica M2M che predispone 3 tipi di comunicazione
@@ -338,6 +357,8 @@ router.route("/hello").handler(routingContext -> {
   response.end("Hello World " + name);
 });
 
+router.route("/hello").failureHandler(...)
+
 vertx.createHttpServer() // Create HTTP Server
     .requestHandler(router::accept).listen(8080);
 ```
@@ -402,22 +423,20 @@ Aggiungo BodyHandler che si occupa di parsare il body. A seconda del Content-Typ
 
 ---
 
-## vertx-web-api-contract
+### What we want
 
-* <p class="fragment">OpenAPI 3 compliant API specification validation with automatic loading of external Json schemas</p>
-* <p class="fragment">Automatic request validation</p>
-* <p class="fragment">Router factory</p>
+![](img/vertx-openapi.png)
 
 ---
 
-### OpenAPI3RouterFactory
+### `OpenAPI3RouterFactory`
 
-* Async loading of specification and its schema dependencies
-* Mount path with operationId or with combination of path and HTTP method
-* Automatic request parameters validation
-* Automatic convert OpenAPI style paths to Vert.x style paths
+* Mount handlers with operationId
+* Automatic infeer request parameters validation handler
+* Automatic mount of correct security validation handlers
+* Automatic generate paths regex
+* Customizable generation behaviours
 * Lazy methods: operations (combination of paths and HTTP methods) are mounted in declaration order inside specification
-* Automatic mount of security validation handlers
 
 ---
 
