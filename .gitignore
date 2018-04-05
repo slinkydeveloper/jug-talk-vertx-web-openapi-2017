@@ -6,3 +6,7 @@ web-demo/target/
 talk_simple/_site/
 
 openapi-demo/target
+
+node_modules
+
+.DS_Store

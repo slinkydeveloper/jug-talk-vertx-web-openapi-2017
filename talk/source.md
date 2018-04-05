@@ -1,4 +1,4 @@
-# Vert.x Web and OpenAPI
+# Design Driven Web APIs with Vert.x
 
 ---
 
@@ -133,14 +133,29 @@ responses:
 
 ---
 
+## And now we develop!
+
+---
+
+_The most important requirement of your public/private Web API is the **high throughput**_
+
+---
+
+## C10K Problem
+
+Note:
+Il problema C10K (Dan Kegel 1999) consiste nell'avere 10.000 connessioni contemporaneamente sullo stesso web server. Anche se interfaccia li gestisce sposto comunque il collo di bottiglia in un altro punto (esempio accesso a DB).
+
+---
+
 ![](img/vertx.png)
 
-* Aynchronous non blocking
+* Reactive
 * Lightweight
-* Event driven
 * Polyglot
 * General purpose
 * All in one toolkit
+* No application servers, only Java SE!
 
 Note:
 Eclipse Vert.x è un progetto della Eclipse Foundation
@@ -149,39 +164,26 @@ Eclipse Vert.x è un progetto della Eclipse Foundation
 
 ---
 
+## Reactive: Async, Non blocking, Message Driven
+
+---
+
 ## All in one Toolkit
 
-* <p class="fragment">Event Bus - JSON - FS - Logging - HTTP - TCP - UDP</p>
-* <p class="fragment">Web - Web Client - API Contracts</p>
-* <p class="fragment">MongoDB - JDBC - SQL - Redis - Reactive PostgreSQL</p>
-* <p class="fragment">JWT - OAuth 2 - Shiro</p>
-* <p class="fragment">SMTP - Kafka - RabbitMQ - AMQP</p>
-* <p class="fragment">`reactiverse` & `vertx-awesome`</p>
+* Event Bus - JSON - FS - Logging - HTTP - TCP - UDP
+* Web - Web Client - API Contracts
+* MongoDB - JDBC - SQL - Redis - Reactive PostgreSQL
+* JWT - OAuth 2 - Shiro
+* SMTP - Kafka - RabbitMQ - AMQP
+* `reactiverse` & `vertx-awesome`
 
 ---
 
 ## How Vert.x works?
 
-Note:
-Vert.x ha un runtime che viene eseguito sulla JVM per permettere la programmazione reactive, che nativamente non è supportata dalla JVM.
-
 ---
 
 ### The (Multi) Reactor Pattern
-
-Note:
-Questo runtime è chiamato Reactor
-
----
-
-The most important requirement of your public/private Web API is the **high throughput**
-
----
-
-## C10K Problem
-
-Note:
-Il problema C10K (Dan Kegel 1999) consiste nell'avere 10.000 connessioni contemporaneamente sullo stesso web server. Anche se interfaccia li gestisce sposto comunque il collo di bottiglia in un altro punto (esempio accesso a DB).
 
 ---
 
@@ -233,14 +235,14 @@ Gli eventi come la richiesta a un DB vengono eseguiti:
 
 ---
 
+<img src="img/sync-workers.gif" style="width:30%;"></img>
+
+---
+
 ![](img/reactor-event-loop-many-events.png)
 
 Note:
 Anche se può sembrare contro intuitivo, la gestione di moltissimi eventi è efficiente con il pattern reactor.
-
----
-
-<img src="img/sync-workers.gif" style="width:30%;"></img>
 
 ---
 
@@ -265,7 +267,7 @@ La maggiore differenza tra NodeJS e Vert.x è il pattern multi reactor, cioè ab
 
 ## C10K with Vert.x
 
-<img src="img/matrix.gif" style="width:120%;"></img>
+<img src="img/futurama.gif" style="width:120%;"></img>
 
 ---
 

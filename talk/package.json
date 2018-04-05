@@ -9,5 +9,8 @@
     "build": "reveal-md source.md --theme beige --css custom.css --static _site"
   },
   "author": "Francesco Guardiani",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "npm": "^5.8.0"
+  }
 }
