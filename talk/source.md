@@ -135,11 +135,11 @@ responses:
 
 ---
 
-## And now we develop!
+## And now let's develop!
 
 ---
 
-_The most important requirement of your public/private Web API is the **high throughput**_
+_The most important requirement of your public/private Web API is the **high concurrency with low latency**_
 
 ---
 
@@ -340,7 +340,7 @@ Ora passiamo a vert.x web, il framework built-in di vert.x che semplifica la cre
 * <p class="fragment">Authorization with JWT</p>
 * <p class="fragment">Server side rendering</p>
 * <p class="fragment">Automatic Request body parsing</p>
-* <p class="fragment">There are too much features!</p>
+* <p class="fragment">There are so much features!</p>
 
 ---
 
